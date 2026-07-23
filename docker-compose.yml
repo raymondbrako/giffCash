@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD before starting}
+      DATA_FILE: /app/data/giffcash.json
+      SEED_DEMO_DATA: "false"
+    volumes:
+      - giffcash-data:/app/data
+    restart: unless-stopped
+volumes:
+  giffcash-data:

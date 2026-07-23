@@ -20,10 +20,6 @@ The first version intentionally uses only Node.js built-in modules. It has no th
 - Responsive staff interface
 - Docker support and automated tests
 
-## Requirements
-
-- Node.js 20 or newer
-
 ## Run locally
 
 ```bash
@@ -33,16 +29,9 @@ node --env-file=.env server.js
 
 Open `http://localhost:3000`.
 
-Development users share the password configured by `ADMIN_PASSWORD`. With the example environment file:
+Demo login: `admin@giffcash.local` / `ChangeMe123!`
 
-| Role | Email |
-| --- | --- |
-| Administrator | `admin@giffcash.local` |
-| Loan officer | `officer@giffcash.local` |
-| Approver | `approver@giffcash.local` |
-| Cashier | `cashier@giffcash.local` |
-
-The example password is `ChangeMe123!`. Change it before using the application beyond local development.
+Other roles use `officer@giffcash.local`, `approver@giffcash.local`, and `cashier@giffcash.local` with the same development password.
 
 ## Test
 
@@ -51,33 +40,13 @@ npm test
 npm run check
 ```
 
-## Run with Docker
+## Docker
 
 ```bash
 export ADMIN_PASSWORD='replace-with-a-strong-password'
 docker compose up --build
 ```
 
-## Data and money model
+Runtime data is stored as integer pesewas in `data/giffcash.json`, which is excluded from Git. Before handling real financial data, migrate persistence to PostgreSQL and add an immutable double-entry ledger, external secrets management, encrypted backups, monitoring, penetration testing, and institution-specific compliance controls.
 
-Runtime data is written to `data/giffcash.json` and excluded from Git. Monetary values are stored as integer pesewas to avoid floating-point rounding errors.
-
-The JSON store is suitable for an MVP and local demonstrations. Before handling real financial data, migrate persistence to PostgreSQL, introduce an immutable double-entry ledger, external secrets management, encrypted backups, stronger tenant isolation, monitoring, penetration testing, and institution-specific compliance controls.
-
-## API summary
-
-- `POST /api/auth/login`
-- `POST /api/auth/logout`
-- `GET /api/auth/me`
-- `GET /api/dashboard`
-- `GET|POST /api/customers`
-- `GET|POST /api/loans`
-- `POST /api/loans/:id/submit`
-- `POST /api/loans/:id/approve`
-- `POST /api/loans/:id/decline`
-- `POST /api/loans/:id/disburse`
-- `POST /api/loans/:id/repay`
-- `GET /api/audit`
-- `GET /api/health`
-
-See [the roadmap](docs/ROADMAP.md) for the next implementation phases.
+See [the roadmap](docs/ROADMAP.md) for subsequent phases.

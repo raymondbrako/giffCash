@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GiffCash loan management platform">
+  <title>GiffCash</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <section id="login-view" class="auth-shell">
+    <div class="auth-panel">
+      <div class="brand-mark" aria-hidden="true">G</div>
+      <p class="eyebrow">Lending operations</p>
+      <h1>Welcome to GiffCash</h1>
+      <p class="muted">Sign in to manage customers, applications, approvals, and collections.</p>
+      <form id="login-form" class="stack-lg">
+        <label>Email<input name="email" type="email" value="admin@giffcash.local" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" value="ChangeMe123!" autocomplete="current-password" required></label>
+        <button type="submit" class="button primary">Sign in</button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+      <p class="demo-note">Development demo: admin@giffcash.local / ChangeMe123!</p>
+    </div>
+  </section>
+
+  <div id="app-view" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand-row"><div class="brand-mark small">G</div><strong>GiffCash</strong></div>
+      <nav aria-label="Main navigation">
+        <button data-route="dashboard" class="nav-item active">Dashboard</button>
+        <button data-route="customers" class="nav-item">Customers</button>
+        <button data-route="loans" class="nav-item">Loans</button>
+        <button data-route="audit" class="nav-item" id="audit-nav">Audit log</button>
+      </nav>
+      <div class="sidebar-footer">
+        <p id="user-name"></p><p id="user-role" class="muted"></p>
+        <button id="logout-button" class="button ghost">Sign out</button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow">GiffCash workspace</p><h2 id="page-title">Dashboard</h2></div><span id="today-label" class="date-chip"></span></header>
+      <section id="page-content" aria-live="polite"></section>
+    </main>
+  </div>
+  <div id="toast" class="toast hidden" role="status"></div>
+</body>
+</html>
